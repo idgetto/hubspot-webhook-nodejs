@@ -18,7 +18,7 @@ http.createServer((request, response) => {
     const concatedValue = appSecret + httpMethod + URI + body
 
     const hash = crypto.createHash('sha256').update(concatedValue).digest('hex');
-    const actualHash = request.headers["X-HubSpot-Signature"] || "none received";
+    const actualHash = request.headers["x-hubspot-signature"] || "none received";
 
     console.log("Expected Signature: " + hash);
     console.log("Actual Signature: " + actualHash);
