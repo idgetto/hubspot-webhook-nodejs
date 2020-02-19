@@ -1,6 +1,9 @@
 const http = require('http');
 const crypto = require('crypto');
 
+const PORT = process.env.PORT || 5000
+
+
 http.createServer((request, response) => {
   let body = [];
   request.on('data', (chunk) => {
@@ -21,4 +24,4 @@ http.createServer((request, response) => {
     response.end(hash);
   });
 
-}).listen(8080);
+}).listen(PORT);
