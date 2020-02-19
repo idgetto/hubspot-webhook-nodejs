@@ -11,9 +11,9 @@ http.createServer((request, response) => {
   }).on('end', () => {
     body = Buffer.concat(body).toString();
 
-    const appSecret = "dfc56f62-8629-464e-a27a-78ac540c9a2f";
+    const appSecret = process.env.APP_SECRET;
     const httpMethod = "POST";
-    const URI = "localhost:8080";
+    const URI = process.env.URL;
 
     const concatedValue = appSecret + httpMethod + URI + body
 
