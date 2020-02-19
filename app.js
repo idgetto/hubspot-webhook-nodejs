@@ -18,10 +18,16 @@ http.createServer((request, response) => {
     const concatedValue = appSecret + httpMethod + URI + body
 
     const hash = crypto.createHash('sha256').update(concatedValue).digest('hex');
+    const actualHash = request.headers["X-HubSpot-Signature"] || "none received";
 
-    console.log(body);
+    console.log("Expected Signature: " + hash);
+    console.log("Actual Signature: " + actualHash);
 
-    response.end(hash);
+    response.write(hash);
+    response.write("\n");
+    response.write(actualHash);
+
+    response.end();
   });
 
 }).listen(PORT);
